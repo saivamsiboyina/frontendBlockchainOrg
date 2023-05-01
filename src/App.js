@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AppProvider } from "@shopify/polaris";
+import LandingPage from "./components/LandingPage";
+import translations from "@shopify/polaris/locales/en.json";
+import PatientOrg from "./components/PatientOrg";
+import DonorOrg from "./components/DonorOrg";
+import BaseOrg from "./components/BaseOrg";
 // import { Web3ModalProvider, useWeb3Modal } from "web3modal";
 import "./App.css";
 import BaseOrgButtons from "./components/BaseOrgButtons";
@@ -42,40 +50,52 @@ function App() {
   };
 
   return (
-    <div className="app">
-      {!connected ? (
-        <button className="connect-wallet" onClick={handleButtonClick}>
-          Connect to Wallet
-        </button>
-      ) : (
-        <>
-          <div className="button-container">
-            <button
-              className="green-button"
-              onClick={() => setButtonClicked("Donor Org")}
-            >
-              Donor Org
-            </button>
-            <button
-              className="yellow-button"
-              onClick={() => setButtonClicked("Patient Org")}
-            >
-              Patient Org
-            </button>
-            <button
-              className="red-button"
-              onClick={() => setButtonClicked("Base Org")}
-            >
-              Base Org
-            </button>
-            {buttonClicked === "Base Org" && <BaseOrgButtons />}
-          </div>
-          {buttonClicked && (
-            <div className="result">Button clicked: {buttonClicked}</div>
-          )}
-        </>
-      )}
-    </div>
+    <AppProvider i18n={translations} >
+      {/* <LandingPage/> */}
+      <BrowserRouter>
+      <Routes>
+          <Route exact path="/" element={<LandingPage/>} />  
+          <Route path="/patient" element={<PatientOrg />} />
+          <Route path="/base" element={< BaseOrg/>} />
+          <Route path="/donor" element={<DonorOrg/>} />
+      </Routes>
+    </BrowserRouter>
+      {/* <p>djjkjk</p> */}
+    </AppProvider>
+    // <div className="app">
+    //   {/* {!connected ? (
+    //     <button className="connect-wallet" onClick={handleButtonClick}>
+    //       Connect to Wallet
+    //     </button>
+    //   ) : ( */}
+    //     <>
+    //       <div className="button-container">
+    //         <button
+    //           className="green-button"
+    //           onClick={() => setButtonClicked("Donor Org")}
+    //         >
+    //           Donor Org
+    //         </button>
+    //         <button
+    //           className="yellow-button"
+    //           onClick={() => setButtonClicked("Patient Org")}
+    //         >
+    //           Patient Org
+    //         </button>
+    //         <button
+    //           className="red-button"
+    //           onClick={() => setButtonClicked("Base Org")}
+    //         >
+    //           Base Org
+    //         </button>
+    //         {buttonClicked === "Base Org" && <BaseOrgButtons />}
+    //       </div>
+    //       {buttonClicked && (
+    //         <div className="result">Button clicked: {buttonClicked}</div>
+    //       )}
+    //     </>
+    //   {/* )} */}
+    // </div>
   );
 }
 

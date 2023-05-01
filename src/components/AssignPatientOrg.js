@@ -21,10 +21,6 @@ function AssignPatientOrgButton() {
         const signer = provider.getSigner();
         setSigner(signer);
 
-        // console.log("ABI", typeof YourContract.abi);
-        // Instantiate the interface manually
-        // const contractInterface = new ethers.utils.Interface(YourContract.abi);
-
         // console.log(YourContract.address);
         const contract = new ethers.Contract(
           YourContract.address,
@@ -32,15 +28,6 @@ function AssignPatientOrgButton() {
           signer
         );
         setContract(contract);
-        // console.log("ContractInterface", contract.interface);
-        // console.log("Contract", contract);
-        // console.log("Funtions", contract.interface.functions);
-        // console.log(typeof contract.interface.encodeFunctionData);
-        // console.log("Contract Address", YourContract.address);
-        // console.log(contract.interface.format(ethers.utils.FormatTypes.json));
-        // const baseAuthOrganization = await contract.baseAuthOrganization();
-        // console.log("Base Auth Organization:", baseAuthOrganization);
-        // console.log(typeof contract.interface);
 
         // Get the current account from Metamask wallet
         const currentAccount = await signer.getAddress();
