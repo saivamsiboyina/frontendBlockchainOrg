@@ -7,7 +7,7 @@ function AssignPatientOrgButton() {
   const [signer, setSigner] = useState(undefined);
   const [contract, setContract] = useState(undefined);
   const [account, setAccount] = useState("");
-  const [userAddress, setUserAddress] = useState("");
+  const [userAddress, setUserAddress] = useState('');
 
   useEffect(() => {
     const init = async () => {
