@@ -10,6 +10,8 @@ import {
     TextField
 }
     from "@shopify/polaris";
+
+import '../App.css'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 function PatientOrg() {
@@ -18,7 +20,7 @@ function PatientOrg() {
     const [bloodGroup, setBloodGroup] = useState('')
     const [organ, setOrgan] = useState('')
     return (
-        <div style={{ padding: "100px" }}>
+        <div className="org">
             <Stack spacing="extraLoose" vertical >
                 <DisplayText size="large">
                     Patient Organization

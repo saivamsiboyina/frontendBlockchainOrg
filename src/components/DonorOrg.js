@@ -19,7 +19,7 @@ function DonorOrg() {
     const [bloodGroup,setBloodGroup]=useState('')
     const [organ,setOrgan]=useState('')
     return (
-        <div style={{padding:"100px"}}>
+        <div className="org">
             <Stack spacing="extraLoose" vertical>
                 <DisplayText size="large">
                     Donor Organization

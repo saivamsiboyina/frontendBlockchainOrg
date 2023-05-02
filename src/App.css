@@ -86,3 +86,8 @@ a{
   text-decoration:none;
   color: white;
 }
+.org{
+  padding: 100px;
+  display:flex;
+  justify-content:center 
+}
