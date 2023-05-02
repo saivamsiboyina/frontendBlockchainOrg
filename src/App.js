@@ -51,17 +51,21 @@ function App() {
 
   return (
     <AppProvider i18n={translations} >
-      {/* <LandingPage/> */}
-      <BrowserRouter>
-      <Routes>
-          <Route exact path="/" element={<LandingPage/>} />  
-          <Route path="/patient" element={<PatientOrg />} />
-          <Route path="/base" element={< BaseOrg/>} />
-          <Route path="/donor" element={<DonorOrg/>} />
-      </Routes>
-    </BrowserRouter>
-      {/* <p>djjkjk</p> */}
-    </AppProvider>
+      {/* {!connected ? (
+        <button className="connect-wallet" onClick={handleButtonClick}>
+          Connect to Wallet
+        </button>
+      ) : */}
+        <BrowserRouter>
+          <Routes>
+            <Route exact path="/" element={<LandingPage />} />
+            <Route path="/patient" element={<PatientOrg />} />
+            <Route path="/base" element={< BaseOrg />} />
+            <Route path="/donor" element={<DonorOrg />} />
+          </Routes>
+        </BrowserRouter>
+      {/* } */}
+      </AppProvider>
     // <div className="app">
     //   {/* {!connected ? (
     //     <button className="connect-wallet" onClick={handleButtonClick}>

@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "@shopify/polaris/build/esm/styles.css";
 import { Carousel } from 'react-responsive-carousel'
-import Check from './Check.png'
+import Check1 from './check1.png'
+import Check2 from './check2.png'
+
 import '../App.css'
 import {
     Stack,
@@ -15,7 +17,8 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 function LandingPage() {
     return (
-        <Stack spacing="extraLoose" vertical alignment="center">
+        <div style={{ padding: "20px 20px 20px 20px" }}>
+            <Stack spacing="extraLoose" vertical alignment="center">
                 <Carousel
                     autoPlay
                     interval={10000}
@@ -24,54 +27,59 @@ function LandingPage() {
                     showStatus={false}
                     showIndicators={false}>
                     <div className="img-container">
-                        <p>Check Test1</p>
-                        <img className="img-thumbnail" src={Check} width="100%" />
+                        <img className="img-thumbnail" src={Check1} width="100%" />
                     </div>
                     <div className="img-container">
-                        <p>Check Test2</p>
-                        <img className="img-thumbnail" src={Check} width="100%" />
+                        <img className="img-thumbnail" src={Check2} width="100%" />
                     </div>
                 </Carousel>
                 <Stack spacing="extraLoose">
                     <Card>
-                        <div style={{ padding: "20px" }}>
-                            <Stack vertical distribution="center">
+                        <div style={{ padding: "30px" }}>
+                            <Stack vertical alignment="center">
                                 <DisplayText size="small">
                                     Patient Organization
                                 </DisplayText>
-                                <Button>
-                                    <Link to="/patient">Patient Org</Link>
-                                </Button>
+                                <div style={{ paddingTop: "10px" }}>
+                                    <Button primary>
+                                        <Link to="/patient">Patient Org</Link>
+                                    </Button>
+                                </div>
                             </Stack>
                         </div>
 
                     </Card>
                     <Card>
-                        <div style={{ padding: "20px" }}>
-                            <Stack vertical distribution="center">
+                        <div style={{ padding: "30px" }}>
+                            <Stack vertical alignment="center">
                                 <DisplayText size="small">
                                     Base Organization
                                 </DisplayText>
-                                <Button>
+                                <div style={{ paddingTop: "10px" }}>
+                                <Button primary>
                                     <Link to="/base">BaseOrg</Link>
                                 </Button>
+                                </div>
                             </Stack>
                         </div>
                     </Card>
                     <Card>
-                        <div style={{ padding: "20px" }}>
-                            <Stack vertical distribution="center">
+                        <div style={{ padding: "30px" }}>
+                            <Stack vertical alignment="center">
                                 <DisplayText size="small">
                                     Donor Organization
                                 </DisplayText>
-                                <Button>
+                                <div style={{ paddingTop: "10px" }}>
+                                <Button primary>
                                     <Link to="/donor">DonorOrg</Link>
                                 </Button>
+                                </div>
                             </Stack>
                         </div>
                     </Card>
                 </Stack>
-        </Stack>
+            </Stack>
+        </div>
     );
 }
 

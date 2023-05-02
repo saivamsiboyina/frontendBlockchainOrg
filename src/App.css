@@ -6,7 +6,11 @@
   height: 100vh;
   background-color: #f6f6f6;
 }
-
+li.slide{
+    display: flex;
+    align-items: center
+}
+ 
 .button-container {
   display: flex;
   justify-content: center;
@@ -73,11 +77,12 @@
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
     object-fit: cover;
+    border-radius: 10px;
 }
 .thumbs.animated{
   display: none;
 }
 a{
   text-decoration:none;
-  color: black;
+  color: white;
 }
