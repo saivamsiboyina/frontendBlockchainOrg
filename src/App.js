@@ -2,7 +2,13 @@ import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { AppProvider } from "@shopify/polaris";
+import {
+  AppProvider,
+  DisplayText,
+  Card,
+  Stack,
+  Button
+} from "@shopify/polaris";
 import LandingPage from "./components/LandingPage";
 import translations from "@shopify/polaris/locales/en.json";
 import PatientOrg from "./components/PatientOrg";
@@ -51,12 +57,26 @@ function App() {
 
   return (
     <AppProvider i18n={translations}>
-      {!connected ? (
-        <button className="connect-wallet" onClick={handleButtonClick}>
-          Connect to Wallet
-        </button>
-      ) : (
-        <BrowserRouter>
+       {!connected ? (
+      <div className="card">
+      <Stack distribution="center" alignment="center" vertical>
+          <Card>
+            <div className="title" style={{ padding: "40px" }}>
+              <DisplayText size="large">
+                Welcome to the Decentralized Organ Donation system, Kindly connect your wallet to Proceed!
+              </DisplayText>
+            </div>
+          </Card>
+        <Button
+        size="large"
+        onClick={handleButtonClick}
+        >
+        Connect to Wallet
+        </Button>
+      </Stack>
+      </div> 
+       ) : ( 
+      <BrowserRouter>
           <Routes>
             <Route exact path="/" element={<LandingPage />} />
             <Route path="/patient" element={<PatientOrg />} />

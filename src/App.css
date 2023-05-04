@@ -19,13 +19,9 @@ li.slide{
   margin-top: 20px;
 }
 
-.connect-wallet {
-  padding: 10px;
+.card .Polaris-Button {
   background-color: #2d9cdb;
-  border: none;
-  border-radius: 5px;
   color: #fff;
-  cursor: pointer;
 }
 
 .green-button {
@@ -90,4 +86,26 @@ a{
   padding: 100px;
   display:flex;
   justify-content:center 
+}
+.title .Polaris-DisplayText--sizeLarge{
+  font-family: Lucida Console, Courier New, monospace;
+  color: white;
+}
+.card .Polaris-Card{
+  background-color: black;
+  margin: 40px;
+}
+.Polaris-Page{
+  max-width: none;
+}
+.footer{
+  text-align: center;
+    font-family: Lucida Console, Courier New, monospace;
+    font-weight: 400;
+    font-size: 28px;
+    background: black;
+    color: white;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px
 }

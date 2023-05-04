@@ -11,7 +11,8 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 function LandingPage() {
   return (
-    <div style={{ padding: "20px 20px 20px 20px" }}>
+    <>
+    <div style={{ padding: "20px",height:"100vh" }}>
       <Stack spacing="extraLoose" vertical alignment="center">
         <Carousel
           autoPlay
@@ -68,6 +69,8 @@ function LandingPage() {
         </Stack>
       </Stack>
     </div>
+     <p className="footer">A Project By Saivamsi</p>
+     </>
   );
 }
 
