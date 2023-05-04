@@ -14,7 +14,7 @@ import BaseOrgButtons from "./components/BaseOrgButtons";
 
 function App() {
   const [connected, setConnected] = useState(false);
-  const [buttonClicked, setButtonClicked] = useState("");
+  // const [buttonClicked, setButtonClicked] = useState("");
 
   useEffect(() => {
     async function checkWallet() {
@@ -50,22 +50,22 @@ function App() {
   };
 
   return (
-    <AppProvider i18n={translations} >
-      {/* {!connected ? (
+    <AppProvider i18n={translations}>
+      {!connected ? (
         <button className="connect-wallet" onClick={handleButtonClick}>
           Connect to Wallet
         </button>
-      ) : */}
+      ) : (
         <BrowserRouter>
           <Routes>
             <Route exact path="/" element={<LandingPage />} />
             <Route path="/patient" element={<PatientOrg />} />
-            <Route path="/base" element={< BaseOrg />} />
+            <Route path="/base" element={<BaseOrg />} />
             <Route path="/donor" element={<DonorOrg />} />
           </Routes>
         </BrowserRouter>
-      {/* } */}
-      </AppProvider>
+      )}
+    </AppProvider>
     // <div className="app">
     //   {/* {!connected ? (
     //     <button className="connect-wallet" onClick={handleButtonClick}>
