@@ -6,6 +6,8 @@ import {
   Button,
   DisplayText,
   Card,
+  Toast,
+  Frame,
   Label,
   TextField,
 } from "@shopify/polaris";
@@ -24,6 +26,8 @@ function PatientOrg() {
   const [signer, setSigner] = useState(undefined);
   const [contract, setContract] = useState(undefined);
   const [account, setAccount] = useState("");
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     const init = async () => {
@@ -56,6 +60,14 @@ function PatientOrg() {
     init();
   }, []);
 
+  const toggleError = () => {
+    setError(false);
+  };
+
+  const toggleSuccess = () => {
+    setSuccess(false);
+  };
+
   const handleFormSubmit = async () => {
     try {
       console.log("INvisiblePatientForm");
@@ -76,8 +88,10 @@ function PatientOrg() {
       });
       const result = await tx.wait();
       console.log(result);
+      setSuccess(true);
     } catch (error) {
       console.error(error);
+      setError(true);
     }
 
     //Reset to Defaults
@@ -88,46 +102,65 @@ function PatientOrg() {
   };
 
   return (
-    <div className="org">
-      <Stack spacing="extraLoose" vertical>
-        <DisplayText size="large">Patient Organization</DisplayText>
-        <Card>
-          <div style={{ padding: "30px", width: "720px" }}>
-            <Stack vertical spacing="loose">
-              <TextField
-                label="Name"
-                value={name}
-                onChange={setName}
-                autoComplete="off"
-              />
-              <TextField
-                label="Medical ID"
-                value={id}
-                onChange={setId}
-                autoComplete="off"
-              />
-              <TextField
-                label="Blood Group"
-                value={bloodGroup}
-                onChange={setBloodGroup}
-                autoComplete="off"
-              />
-              <TextField
-                label="Organ"
-                value={organ}
-                onChange={setOrgan}
-                autoComplete="off"
-              />
-              <Stack distribution="trailing">
-                <Button size="large" primary onClick={handleFormSubmit}>
-                  Add Patient
-                </Button>
+    <Frame>
+      <div className="org">
+        <Stack spacing="extraLoose" vertical>
+          <DisplayText size="large">Patient Organization</DisplayText>
+          <Card>
+            <div style={{ padding: "30px", width: "720px" }}>
+              <Stack vertical spacing="loose">
+                <TextField
+                  label="Name"
+                  value={name}
+                  onChange={setName}
+                  autoComplete="off"
+                />
+                <TextField
+                  label="Medical ID"
+                  value={id}
+                  onChange={setId}
+                  autoComplete="off"
+                />
+                <TextField
+                  label="Blood Group"
+                  value={bloodGroup}
+                  onChange={setBloodGroup}
+                  autoComplete="off"
+                />
+                <TextField
+                  label="Organ"
+                  value={organ}
+                  onChange={setOrgan}
+                  autoComplete="off"
+                />
+                <Stack distribution="trailing">
+                  <Button size="large" primary onClick={handleFormSubmit}>
+                    Add Patient
+                  </Button>
+                </Stack>
               </Stack>
-            </Stack>
-          </div>
-        </Card>
-      </Stack>
-    </div>
+            </div>
+          </Card>
+        </Stack>
+        {error && (
+          <Toast
+            duration={3000}
+            content={
+              "UnAuthorized Address Detected!!, Access Denied! Only Patient Auth Allowed!"
+            }
+            error
+            onDismiss={toggleError}
+          />
+        )}
+        {success && (
+          <Toast
+            duration={3000}
+            content={"Patient Added Successfully!"}
+            onDismiss={toggleSuccess}
+          />
+        )}
+      </div>
+    </Frame>
   );
 }
 

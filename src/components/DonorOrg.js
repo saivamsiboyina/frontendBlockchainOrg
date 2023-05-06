@@ -7,6 +7,8 @@ import {
   DisplayText,
   Card,
   Label,
+  Frame,
+  Toast,
   TextField,
   FormLayout,
 } from "@shopify/polaris";
@@ -25,6 +27,8 @@ function DonorOrg() {
   const [signer, setSigner] = useState(undefined);
   const [contract, setContract] = useState(undefined);
   const [account, setAccount] = useState("");
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     const init = async () => {
@@ -57,6 +61,13 @@ function DonorOrg() {
     init();
   }, []);
 
+  const toggleError = () => {
+    setError(false);
+  };
+  const toggleSuccess = () => {
+    setSuccess(false);
+  };
+
   const handleFormSubmit = async () => {
     try {
       console.log("INvisibleDonorForm");
@@ -77,8 +88,10 @@ function DonorOrg() {
       });
       const result = await tx.wait();
       console.log(result);
+      setSuccess(true);
     } catch (error) {
       console.error(error);
+      setError(true);
     }
 
     //Reset to Defaults
@@ -89,46 +102,65 @@ function DonorOrg() {
   };
 
   return (
-    <div className="org">
-      <Stack spacing="extraLoose" vertical>
-        <DisplayText size="large">Donor Organization</DisplayText>
-        <Card>
-          <div style={{ padding: "30px", width: "720px" }}>
-            <FormLayout>
-              <TextField
-                label="Name"
-                value={name}
-                onChange={setName}
-                autoComplete="off"
-              />
-              <TextField
-                label="Medical ID"
-                value={id}
-                onChange={setId}
-                autoComplete="off"
-              />
-              <TextField
-                label="Blood Group"
-                value={bloodGroup}
-                onChange={setBloodGroup}
-                autoComplete="off"
-              />
-              <TextField
-                label="Organ"
-                value={organ}
-                onChange={setOrgan}
-                autoComplete="off"
-              />
-              <Stack distribution="trailing">
-                <Button size="large" primary onClick={handleFormSubmit}>
-                  Add Donor
-                </Button>
-              </Stack>
-            </FormLayout>
-          </div>
-        </Card>
-      </Stack>
-    </div>
+    <Frame>
+      <div className="org">
+        <Stack spacing="extraLoose" vertical>
+          <DisplayText size="large">Donor Organization</DisplayText>
+          <Card>
+            <div style={{ padding: "30px", width: "720px" }}>
+              <FormLayout>
+                <TextField
+                  label="Name"
+                  value={name}
+                  onChange={setName}
+                  autoComplete="off"
+                />
+                <TextField
+                  label="Medical ID"
+                  value={id}
+                  onChange={setId}
+                  autoComplete="off"
+                />
+                <TextField
+                  label="Blood Group"
+                  value={bloodGroup}
+                  onChange={setBloodGroup}
+                  autoComplete="off"
+                />
+                <TextField
+                  label="Organ"
+                  value={organ}
+                  onChange={setOrgan}
+                  autoComplete="off"
+                />
+                <Stack distribution="trailing">
+                  <Button size="large" primary onClick={handleFormSubmit}>
+                    Add Donor
+                  </Button>
+                </Stack>
+              </FormLayout>
+            </div>
+          </Card>
+        </Stack>
+        {error && (
+          <Toast
+            duration={3000}
+            content={
+              "UnAuthorized Address Detected!!, Access Denied! Only Donor Org Allowed!"
+            }
+            error
+            onDismiss={toggleError}
+          />
+        )}
+        {success && (
+          <Toast
+            duration={3000}
+            content={"Donor Added Successfully!"}
+            onDismiss={toggleSuccess}
+          />
+        )}
+      </div>
+    </Frame>
   );
 }
 

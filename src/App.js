@@ -7,7 +7,7 @@ import {
   DisplayText,
   Card,
   Stack,
-  Button
+  Button,
 } from "@shopify/polaris";
 import LandingPage from "./components/LandingPage";
 import translations from "@shopify/polaris/locales/en.json";
@@ -57,26 +57,24 @@ function App() {
 
   return (
     <AppProvider i18n={translations}>
-       {!connected ? (
-      <div className="card">
-      <Stack distribution="center" alignment="center" vertical>
-          <Card>
-            <div className="title" style={{ padding: "40px" }}>
-              <DisplayText size="large">
-                Welcome to the Decentralized Organ Donation system, Kindly connect your wallet to Proceed!
-              </DisplayText>
-            </div>
-          </Card>
-        <Button
-        size="large"
-        onClick={handleButtonClick}
-        >
-        Connect to Wallet
-        </Button>
-      </Stack>
-      </div> 
-       ) : ( 
-      <BrowserRouter>
+      {!connected ? (
+        <div className="card">
+          <Stack distribution="center" alignment="center" vertical>
+            <Card>
+              <div className="title" style={{ padding: "40px" }}>
+                <DisplayText size="large">
+                  Welcome to the Decentralized Organ Donation system, Kindly
+                  connect your wallet to Proceed!
+                </DisplayText>
+              </div>
+            </Card>
+            <Button size="large" onClick={handleButtonClick}>
+              Connect to Wallet
+            </Button>
+          </Stack>
+        </div>
+      ) : (
+        <BrowserRouter>
           <Routes>
             <Route exact path="/" element={<LandingPage />} />
             <Route path="/patient" element={<PatientOrg />} />
